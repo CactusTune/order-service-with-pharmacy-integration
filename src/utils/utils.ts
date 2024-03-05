@@ -1,4 +1,4 @@
-import { IncomingMessage } from "http";
+import { IncomingMessage, ServerResponse } from "http";
 
 export function parseJSONBody<T>(req: IncomingMessage): Promise<T> {
   return new Promise((resolve, reject) => {
@@ -21,4 +21,19 @@ export function parseJSONBody<T>(req: IncomingMessage): Promise<T> {
       reject(error);
     });
   });
+}
+
+export function sendResponse(
+  res: ServerResponse,
+  statusCode: number,
+  body: string | object,
+  contentType: string = "application/json"
+) {
+  res.writeHead(statusCode, { "Content-Type": contentType });
+
+  if (contentType === "application/json" && typeof body === "object") {
+    res.end(JSON.stringify(body));
+  } else {
+    res.end(body);
+  }
 }

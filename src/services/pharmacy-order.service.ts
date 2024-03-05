@@ -40,8 +40,6 @@ export class OrderService {
       `${BASE_URL}/${pharmacyId}/orders/${orderId}`
     );
 
-    console.log(response);
-
     return response.data;
   }
 

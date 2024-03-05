@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { OrderService } from "../services/pharmacy-order.service";
-import { parseJSONBody } from "../utils/utils";
+import { parseJSONBody, sendResponse } from "../utils/utils";
 import { GenericOrderPaylooad } from "../interface/generic-order.interface";
 import { orderSchema } from "../validations/make-order.validation";
 
@@ -12,11 +12,9 @@ export async function getOrder(
 ): Promise<void> {
   try {
     const order = await OrderService.getOrderById(order_id, pharmacy_id);
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(order));
+    sendResponse(res, 200, order);
   } catch (error) {
-    res.writeHead(404, { "Content-Type": "text/plain" });
-    res.end("Order not found");
+    sendResponse(res, 404, "Order not found", "text/plain");
   }
 }
 
@@ -30,19 +28,15 @@ export async function makeOrder(
     const { error } = orderSchema.validate(json_data);
 
     if (error) {
-      res.writeHead(400, { "Content-Type": "application/json" });
-      res.end(
-        JSON.stringify({
-          message: "Validation error",
-          details: error.details[0].message,
-        })
-      );
+      sendResponse(res, 400, {
+        message: "Validation error",
+        details: error.details[0].message,
+      });
       return;
     }
 
     const response = await OrderService.makeOrder(json_data);
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(response));
+    sendResponse(res, 200, response);
   } catch (error) {
     if (error instanceof SyntaxError) {
       res.writeHead(400, { "Content-Type": "text/plain" });
