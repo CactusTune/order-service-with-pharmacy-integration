@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { OrderService } from "../services/pharmacy-order.service";
-import { parseJSONBody, logError } from "../utils/utils";
+import { parseJSONBody } from "../utils/utils";
 import { GenericOrderPaylooad } from "../interface/generic-order.interface";
 import { orderSchema } from "../validations/make-order.validation";
 
@@ -48,7 +48,6 @@ export async function makeOrder(
       res.writeHead(400, { "Content-Type": "text/plain" });
       res.end("Invalid JSON");
     } else {
-      logError(new Error("An unknown error occurred"));
       res.writeHead(500, { "Content-Type": "text/plain" });
       res.end("Internal Server Error");
     }

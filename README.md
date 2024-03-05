@@ -1,18 +1,17 @@
 # PHARMARCY ORDER API INTEGRATION
 
-A TypeScript application for managing orders and integrating with external pharmacies. The application allowS the creation of orders with products from different pharmacies.
+A TypeScript application for managing orders and integrating with external pharmacies. This application was built without any framework, and allows the creation of orders with products from different pharmacies.
 ## Cloning the repo
 
 **NOTE:** Make sure you have Git installed on your system.
 
 ```bash
   # HTTPS
-  $ git clone https://github.com/CactusTune/Users-gaming-review-Platform-with-GraphhQL.git 
-
+  $ git clone https://github.com/CactusTune/order-service-with-pharmacy-integration.git
   # SSH
-  $ git clone git@github.com:CactusTune/Users-gaming-review-Platform-with-GraphhQL.git
+  git@github.com:CactusTune/order-service-with-pharmacy-integration.git
 
-  $ cd gameReview-api
+  $ cd pharmacy-order-api
 ```
 
 ## Running locally - Docker
@@ -42,7 +41,7 @@ For initial setup, run the following command in the root of the project(you can 
 
 ```bash
     $ docker build -t <image-name> .
-    $ docker run -d -p 5040:4040 <image-name>
+    $ docker run -d -p <your-port>:3000 <image-name>
 ```
 
 
@@ -53,23 +52,18 @@ For initial setup, run the following command in the root of the project(you can 
   ```bash
     $ npm install
   ```
-3. Set up the required environment variables. Create a .env file in the root directory and add the following variables:
-   
-   JWT_SECRET
 
-   MONGODB_URI
-
-4. Start the development server with the following command: 
+3. Start the development server with the following command: 
  ```bash
     $ npm run dev
  ```
 
-5. Start the main/production server with the following command
+4. Start the main/production server with the following command
 ```bash
     $ npm run start
  ```
 
- ## Run resolvers unit Tests with Jest
+ ## Run unit Tests For correctness with Jest
  ```bash
     $ npm run test
  ```
