@@ -18,23 +18,6 @@ A TypeScript application for managing orders and integrating with external pharm
 
 ### Prerequisites
 
-#### Docker Installation for Mac
-
-1. Download the latest version of Docker Desktop from Docker's site which can be found 
-   [here](https://docs.docker.com/desktop/install/mac-install/)
-2. Open the downloaded file and drag the Docker
-3. Open the Docker app from the Applications folder.
-4. Type in your Mac's password when prompted.
-5. After this, Docker will configure itself automatically.
-
-#### Docker Installation and Set up for Windows
-
-1. Windows Subsystem for Linux is installed (instruction can be found
-   [here](https://docs.microsoft.com/en-us/windows/wsl/install))
-
-2. Have Docker Desktop installed ([Docker](https://www.docker.com/products/docker-desktop))
- 
-
 ### Running the docker stack
 
 For initial setup, run the following command in the root of the project(you can bind any port of your choice)
@@ -43,7 +26,6 @@ For initial setup, run the following command in the root of the project(you can 
     $ docker build -t <image-name> .
     $ docker run -d -p <your-port>:3000 <image-name>
 ```
-
 
 ## Running locally - Manually with npm 
 
